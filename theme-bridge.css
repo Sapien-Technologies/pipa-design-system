@@ -1,0 +1,87 @@
+
+/* ── Tailwind token bridge ────────────────────────────────────────────────
+   Exposes every Tier-2 COLOR token as a token-named Tailwind utility
+   (`bg-surface-card`, `text-ink-strong`, `border-status-negative-border`, …)
+   via @theme inline, so utilities emit var(--…) at use-point and follow
+   [data-theme] switching exactly like direct var() references do.
+   Shadows and fonts are NOT bridged: their token names live in Tailwind's
+   own --shadow-* and --font-* theme namespaces and an entry would self-reference.
+   Consume those as var(--shadow-card) or the arbitrary form shadow-(--shadow-card).
+   MAINTENANCE: a new Tier-2 color token in styles/tokens.css needs a line here
+   to get a named utility — or consume it as bg-(--token), which needs none. */
+@theme inline {
+  --color-ai-chip-border: var(--ai-chip-border);
+  --color-ai-chip-ink: var(--ai-chip-ink);
+  --color-ai-chip-tint: var(--ai-chip-tint);
+  --color-border-cyan-30: var(--border-cyan-30);
+  --color-border-divider: var(--border-divider);
+  --color-border-hairline: var(--border-hairline);
+  --color-border-positive-soft: var(--border-positive-soft);
+  --color-border-purple-20: var(--border-purple-20);
+  --color-border-purple-25: var(--border-purple-25);
+  --color-border-purple-30: var(--border-purple-30);
+  --color-border-purple-dashed: var(--border-purple-dashed);
+  --color-border-subtle: var(--border-subtle);
+  --color-btn-ai-border: var(--btn-ai-border);
+  --color-btn-ai-ink: var(--btn-ai-ink);
+  --color-btn-ai-tint: var(--btn-ai-tint);
+  --color-fill-cyan-soft: var(--fill-cyan-soft);
+  --color-fill-cyan-tint: var(--fill-cyan-tint);
+  --color-fill-faint-02: var(--fill-faint-02);
+  --color-fill-faintest: var(--fill-faintest);
+  --color-fill-hover: var(--fill-hover);
+  --color-fill-purple-07: var(--fill-purple-07);
+  --color-fill-purple-100: var(--fill-purple-100);
+  --color-fill-purple-15: var(--fill-purple-15);
+  --color-fill-purple-badge: var(--fill-purple-badge);
+  --color-fill-purple-border: var(--fill-purple-border);
+  --color-fill-purple-ghost: var(--fill-purple-ghost);
+  --color-fill-purple-hover: var(--fill-purple-hover);
+  --color-fill-purple-tint: var(--fill-purple-tint);
+  --color-fill-purple-track: var(--fill-purple-track);
+  --color-fill-subtle: var(--fill-subtle);
+  --color-fill-teal-tint: var(--fill-teal-tint);
+  --color-fill-violet-border: var(--fill-violet-border);
+  --color-fill-violet-tint: var(--fill-violet-tint);
+  --color-focus-ring-subtle: var(--focus-ring-subtle);
+  --color-ink-action: var(--ink-action);
+  --color-ink-faint: var(--ink-faint);
+  --color-ink-linkedin: var(--ink-linkedin);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-on-brand: var(--ink-on-brand);
+  --color-ink-on-dark: var(--ink-on-dark);
+  --color-ink-strong: var(--ink-strong);
+  --color-ink-violet: var(--ink-violet);
+  --color-seq-step-ink: var(--seq-step-ink);
+  --color-status-info-border: var(--status-info-border);
+  --color-status-info-ink: var(--status-info-ink);
+  --color-status-info-tint: var(--status-info-tint);
+  --color-status-negative-border: var(--status-negative-border);
+  --color-status-negative-ink: var(--status-negative-ink);
+  --color-status-negative-tint: var(--status-negative-tint);
+  --color-status-neutral-border: var(--status-neutral-border);
+  --color-status-neutral-ink: var(--status-neutral-ink);
+  --color-status-neutral-tint: var(--status-neutral-tint);
+  --color-status-positive-border: var(--status-positive-border);
+  --color-status-positive-ink: var(--status-positive-ink);
+  --color-status-positive-tint: var(--status-positive-tint);
+  --color-status-teal-ink: var(--status-teal-ink);
+  --color-status-warning-border: var(--status-warning-border);
+  --color-status-warning-ink: var(--status-warning-ink);
+  --color-status-warning-tint: var(--status-warning-tint);
+  --color-surface-ai: var(--surface-ai);
+  --color-surface-ai-border: var(--surface-ai-border);
+  --color-surface-ai-ink: var(--surface-ai-ink);
+  --color-surface-card: var(--surface-card);
+  --color-surface-card-border: var(--surface-card-border);
+  --color-surface-dropdown: var(--surface-dropdown);
+  --color-surface-glass-50: var(--surface-glass-50);
+  --color-surface-glass-55: var(--surface-glass-55);
+  --color-surface-hero: var(--surface-hero);
+  --color-surface-hero-border: var(--surface-hero-border);
+  --color-surface-panel: var(--surface-panel);
+  --color-surface-rail: var(--surface-rail);
+  --color-surface-topbar: var(--surface-topbar);
+  --color-surface-trigger: var(--surface-trigger);
+  --color-surface-white: var(--surface-white);
+}

@@ -1,0 +1,434 @@
+/*
+ * pipa-web design tokens — THE ONLY FILE where raw color values may exist.
+ * (check:tokens exempts this file and fails hardcoded style values anywhere else.)
+ *
+ * Two tiers:
+ *   Tier 1 — raw ramps (--pipa-*): palette facts. Components never reference these
+ *            directly except via Tier 2 (a Tier 2 token may alias a Tier 1 ramp).
+ *   Tier 2 — semantic tokens (--surface-*, --ink-*, --border-*, --fill-*,
+ *            --status-*, --shadow-*, …): what components consume. LIGHT values on
+ *            :root are the DEFAULT and reproduce the current product look
+ *            (carried verbatim from pipa-react-mfe wc/styles/wc-input.css so
+ *            ported components resolve unchanged). [data-theme="dark"] remaps
+ *            Tier 2 only.
+ *
+ * Sources: pipa-react-mfe/wc/styles/wc-input.css (canonical Tier 1/2, light look)
+ *          pipa-web-marketing/app/globals.css (dark/light ramps, aurora gradients)
+ * Docs:    docs/design-system/tokens.md
+ */
+
+:root {
+  /* ============ Fonts ============ */
+  --font-poppins: 'Poppins', sans-serif;
+  --font-montserrat: 'Montserrat Alternates', sans-serif;
+  --font-roboto: 'Roboto Flex', sans-serif;
+
+  /* ============ Tier 1 additions (from pipa-web-marketing) ============ */
+  --pipa-dark-950: #06050C;
+  --pipa-dark-900: #0A090F;
+  --pipa-dark-850: #080B18;
+  --pipa-dark-800: #12101C;
+  --pipa-dark-700: #1E1B30;
+  --pipa-dark-600: #2D2850;
+  --pipa-light-50: #FAFAF9;
+  --pipa-light-100: #F4F3F1;
+  --pipa-light-200: #E8E6E1;
+  --pipa-light-300: #D1CECC;
+  --pipa-light-purple-50: #F2F0FF;
+  --pipa-bg-aurora: linear-gradient(135deg, #08060E 0%, #150F26 35%, #0C0A18 65%, #08060E 100%);
+
+  /* ============ Tier 1 + Tier 2 (carried verbatim from wc-input.css) ============ */
+  /* ─── Tier 1 — Primitive tokens ─────────────────────────────────────────── */
+
+  /* Brand & purple */
+  --pipa-purple-200: #C4B5FD;
+  --pipa-purple-300: #A78BFA;
+  --pipa-purple-400: #9B87FF;
+  --pipa-purple-500: #7B5CFA;
+  --pipa-purple-600: #635AFF;
+  --pipa-purple-700: #4A3DCC;
+
+  /* Cyan */
+  --pipa-cyan-300: #7AFFF0;
+  --pipa-cyan-400: #2EFDDF;
+  --pipa-cyan-500: #1ED4BB;
+  --pipa-cyan-600: #0DA898;
+
+  /* Sky (light page accents) */
+  --pipa-sky-50:  #CEE9F8;
+  --pipa-sky-100: #C8E8F8;
+  --pipa-sky-200: #BEE3F5;
+  --pipa-sky-300: #B8DFF5;
+  --pipa-sky-400: #B4D9F2;
+
+  /* Blue & navy */
+  --pipa-blue-300: #7FBAFF;
+  --pipa-blue-700: #1565A8;
+  --pipa-blue-900: #0A2B4A;
+  --pipa-navy:     #001241;
+
+  /* Card surfaces */
+  --pipa-card-purple:    #3A2FB5;
+  --pipa-card-navy:      #243D6A;
+  --pipa-card-navy-deep: #1A2E52;
+
+  /* Status */
+  --pipa-green: #22C55E;
+  --pipa-amber: #F59E0B;
+  --pipa-red:   #EF4444;
+
+  /* ─── Tier 2 — Semantic tokens (consumed by components) ─────────────────── */
+  --page-bg: linear-gradient(145deg, #F2F0FF 0%, #EBF0FF 35%, #E8FFFE 70%, #F0F8FF 100%);
+  --surface-card: rgba(238, 240, 255, 0.65);
+  --surface-panel: rgba(255, 255, 255, 0.62);
+  --surface-card-border: rgba(255, 255, 255, 0.70);
+  --surface-hero: linear-gradient(145deg, var(--pipa-card-navy) 0%, var(--pipa-card-navy-deep) 100%);
+  --surface-hero-border: rgba(30, 212, 187, 0.18);
+
+  --ink-strong:    var(--pipa-navy);
+  --ink-muted:     rgba(0, 18, 65, 0.55);
+  --ink-faint:     rgba(0, 18, 65, 0.40);
+  /* Inline action/link ink on a page or card surface. purple-600 rather than the
+     brand purple-500: measured 4.73:1 on white vs 4.42:1, and links are normal
+     text so they need full AA, not the large-text allowance the CTA label gets. */
+  --ink-action:    var(--pipa-purple-600);
+  /* Text on brand/primary-button surfaces (e.g. purple-filled CTA). Always pure
+     white. Measured 4.42:1 against --pipa-purple-500 — passes AA for the large/
+     semibold labels CTAs use (3:1), not normal-text AA; the brand purple is
+     frozen at the shipped product value (parity), so don't "fix" this by
+     darkening it. (Corrects an inherited wc-input.css comment claiming >=4.5.) */
+  --ink-on-brand:  #FFFFFF;
+
+  --hero-ink-strong: #FFFFFF;
+  --hero-ink-muted:  rgba(255, 255, 255, 0.62);
+  --hero-ink-faint:  rgba(255, 255, 255, 0.50);
+  --hero-accent:     var(--pipa-cyan-500);
+  --hero-done-tint:  rgba(173, 210, 255, 0.95);
+  --hero-border:     rgba(255, 255, 255, 0.15);
+  --hero-divider:    rgba(255, 255, 255, 0.10);
+  --hero-fill:       rgba(255, 255, 255, 0.20);
+
+  /* Glass surface recipe — purple-tinted shadow stacks + blur. Components
+     consume these so the light-glass card/panel look is defined once. */
+  --shadow-card: 0 1px 4px rgba(99, 90, 255, 0.06), 0 8px 24px rgba(99, 90, 255, 0.10), 0 24px 56px rgba(99, 90, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --shadow-panel: 0 1px 4px rgba(99, 90, 255, 0.04), 0 8px 24px rgba(99, 90, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --blur-glass: blur(24px) saturate(160%);
+  --radius-card: 14px;
+  /* Border-radius for input-level elements (buttons inside modals, text inputs).
+     Smaller than --radius-card so modal action buttons feel crisp, not blobby. */
+  --radius-input: 10px;
+
+  /* Neutral ink-based surfaces (navy at low alpha) — hairlines, hovers, subtle
+     fills used by list rows, chips, dividers on light surfaces. */
+  --border-subtle: rgba(0, 18, 65, 0.10);
+  /* Softer than --border-subtle — used for internal section dividers (drawer
+     header/footer separators, card internal rules) at 8% navy alpha. */
+  --border-divider: rgba(0, 18, 65, 0.08);
+  --border-hairline: rgba(0, 18, 65, 0.06);
+  --fill-hover: rgba(0, 18, 65, 0.03);
+  --fill-subtle: rgba(0, 18, 65, 0.05);
+  /* toggle OFF track — navy-tinted, AA-present */
+  --track-off: rgba(0, 18, 65, 0.28);
+
+  /* Semantic status pills — tint (bg) + border use the base status colors at
+     low alpha; ink is a darker shade for accessible text on the tint. Consumed
+     by StatusChip / SentimentBadge / match pills. */
+  --status-positive-tint:   rgba(34, 197, 94, 0.12);
+  --status-positive-border: rgba(34, 197, 94, 0.30);
+  --status-positive-ink:    #15803D;
+  --status-warning-tint:    rgba(245, 158, 11, 0.12);
+  --status-warning-border:  rgba(245, 158, 11, 0.30);
+  --status-warning-ink:     #B45309;
+  --status-negative-tint:   rgba(239, 68, 68, 0.12);
+  --status-negative-border: rgba(239, 68, 68, 0.30);
+  --status-negative-ink:    #B91C1C;
+  --status-info-tint:       rgba(23, 107, 186, 0.12);
+  --status-info-border:     rgba(23, 107, 186, 0.30);
+  --status-info-ink:        #1D4ED8;
+  --status-neutral-tint:    var(--fill-subtle);
+  --status-neutral-border:  var(--border-subtle);
+  --status-neutral-ink:     var(--ink-muted);
+
+  /* AI surface recipe — marks AI-generated content pending user review
+     (recommendation panels, suggestion cards). Hue journey mirrors the aurora
+     page-bg (--pipa-purple-500 → --pipa-cyan-500) but at card-strength alpha,
+     so the panel sits INSIDE white modals without inverting the page/surface
+     elevation hierarchy. Consume for ANY surface presenting AI output. */
+  --surface-ai: linear-gradient(135deg, rgba(123, 92, 250, 0.07) 0%, rgba(30, 212, 187, 0.05) 100%);
+  --surface-ai-border: rgba(123, 92, 250, 0.25);
+  --surface-ai-ink: var(--pipa-purple-700);
+  /* AI candidate chips (pre-accept review state) — purple, visually distinct
+     from the green include / red exclude chips they become on accept. */
+  --ai-chip-tint:   var(--fill-purple-tint);
+  --ai-chip-border: rgba(123, 92, 250, 0.35);
+  --ai-chip-ink:    var(--pipa-purple-700);
+  /* AI trigger button (purple-outline pill that invokes an AI action) */
+  --btn-ai-tint:   rgba(123, 92, 250, 0.05);
+  --btn-ai-border: rgba(123, 92, 250, 0.45);
+  --btn-ai-ink:    var(--pipa-purple-600);
+
+  /* Dark-tier page surface: an always-dark ground that ignores the active theme.
+     Two product consumers, both deliberate: app/(public)/session-expired (inline)
+     and .linkedin-auth-surface in app/globals.css, which LinkedInAuthPage pairs
+     with data-theme="dark" (the /style-guide catalog also references it as a swatch
+     backdrop, but that surface never ships). session-expired is a hand-off INTO that
+     page, so the two match on purpose — Angular's SCSS put it as "so the user
+     perceives a single seamless re-auth surface". The auth screens used this token
+     until Story 26
+     moved them onto the themed --page-bg; these two stay dark by design.
+     Gradient values are the aurora-dark palette from the mockup. The stop hex
+     values are in the tolerated-drift list; future deep-dark work should define
+     discrete primitive tokens for these stops. */
+  --page-bg-dark: linear-gradient(135deg, #08060E 0%, #150F26 35%, #0C0A18 65%, #08060E 100%);
+
+  /* Dark button tokens — LinkedIn Auth is the only consumer (opt-in via
+     surface="dark" on interactive elements). Light-surface button rendering is
+     byte-for-byte unchanged; this block is purely additive.
+     Naming follows the same tier-2 semantic pattern as the light tokens above. */
+
+  /* Primary: purple-filled CTA (Sync LinkedIn Session, Install pipa Extension) */
+  --btn-dark-primary-bg:     var(--pipa-purple-500);
+  --btn-dark-primary-ink:    #FFFFFF;
+  /* Shadow derived from --pipa-purple-500 at 35% alpha — same glow pattern as
+  --shadow-cta but tuned for the dark surface (slightly more prominent). */
+  --btn-dark-primary-shadow: 0 10px 24px rgba(123, 92, 250, 0.35);
+  /* Disabled primary — the purple CTA at 30% while its gate is unmet (VerifyCta
+     before setup completes; the consent-illustration's visual verify button). */
+  --btn-dark-primary-disabled-bg: rgba(123, 92, 250, 0.30);
+
+  /* Secondary: ghost/outline (Go back, Open LinkedIn link) */
+  --btn-dark-secondary-bg:     transparent;
+  --btn-dark-secondary-border: rgba(123, 92, 250, 0.50);
+  --btn-dark-secondary-ink:    var(--pipa-purple-300);
+
+  /* Ghost text link (non-border inline action links on dark surfaces) */
+  --btn-dark-ghost-ink: var(--pipa-purple-300);
+
+  /* Retry: red-outline destructive action on dark */
+  --btn-dark-retry-border: rgba(239, 68, 68, 0.40);
+  --btn-dark-retry-ink:    #fca5a5;
+
+  /* App-shell chrome (locked: hybrid). Rail = purple-tinted glass (hue
+     separation); top bar = aurora-tinted frosted glass (blended but a real
+     surface so it stays legible when content scrolls under it). */
+  --surface-rail:   rgba(242, 240, 255, 0.72);
+  --surface-topbar: rgba(240, 240, 255, 0.50);
+
+  /* Named alpha-tint tokens derived from --pipa-purple-500 (rgb 123,92,250).
+     Components reference these instead of raw rgba literals — a single source
+     of truth for the brand-purple-at-alpha pattern. */
+  --nav-active-bg:    rgba(123, 92, 250, 0.12);
+  --nav-active-border: rgba(123, 92, 250, 0.22);
+  --avatar-bg:        rgba(123, 92, 250, 0.12);
+  --focus-ring-subtle: rgba(123, 92, 250, 0.15);
+  /* Elevation shadow for brand-purple CTA buttons. Produces a purple glow that
+     visually anchors the button — derived from --pipa-purple-500 at 30% alpha. */
+  --shadow-cta: 0 6px 16px rgba(123, 92, 250, 0.30);
+  /* Hover elevation for interactive cards — purple-tinted lift, 16% alpha. */
+  --shadow-hover: 0 8px 24px rgba(123, 92, 250, 0.16);
+  /* Progress bar track background for capacity/fill bars — purple at 14% alpha. */
+  --fill-purple-track: rgba(123, 92, 250, 0.14);
+  /* Purple-tint icon badge background — used for empty-state and card icon squares. */
+  --fill-purple-tint: rgba(123, 92, 250, 0.10);
+  /* Ink for numbered message-sequence step badges in the template editor —
+     rides on --fill-purple-tint. No prior purple-600 ink role token existed. */
+  --seq-step-ink: var(--pipa-purple-600);
+  /* Lower-alpha purple fills for subtle hover/ghost/badge surfaces. */
+  --fill-purple-badge: rgba(123, 92, 250, 0.08);
+  --fill-purple-border: rgba(123, 92, 250, 0.18);
+
+  /* Lead-list chip on a campaign row. LIGHT keeps the MFE's purple badge. DARK
+     cannot: the ink token darkens with the theme, so a purple badge renders
+     dark-purple-on-dark and is effectively unreadable. Dark therefore adopts the
+     quick-action card treatment (see the [data-theme="dark"] block). Themed here
+     rather than in the component so the chip stays declarative. */
+  --chip-lead-list-bg: var(--fill-purple-badge);
+  --chip-lead-list-border: var(--fill-purple-border);
+  --chip-lead-list-ink: var(--pipa-purple-700);
+  /* `0 0 #0000`, not `none`: this feeds a Tailwind v4 shadow slot, and `none`
+     inside a composed box-shadow list makes the whole declaration invalid. */
+  --chip-lead-list-shadow: 0 0 #0000;
+  --fill-purple-hover: rgba(123, 92, 250, 0.06);
+  --fill-purple-ghost: rgba(123, 92, 250, 0.03);
+  /* Solid light-purple tint — used as variable-highlight background in the
+     message-template editor. Matches Tailwind purple-50 / lavender-100 visually.
+     Counterpart ink token: --pipa-purple-500. */
+  --fill-purple-100: #f3e8ff;
+  /* Pure white surface — used for active-tab pills and composer input backgrounds
+     where a literal white is required (e.g. inside already-glass surfaces).
+     Distinct from --surface-card which carries alpha transparency. */
+  --surface-white: #ffffff;
+  /* Cyan-tinted icon badge background — used for message/reply activity timeline
+     icons. Derived from --pipa-cyan-500 (rgb 30,212,187) at 16% alpha. */
+  --fill-cyan-tint: rgba(30, 212, 187, 0.16);
+  /* Tooltip surface — dark slate, WCAG AA contrast with white text. */
+  --tooltip-bg: #1f2937;
+  /* Text on dark surfaces (tooltips, dark cards). Always pure white for contrast. */
+  --ink-on-dark: #FFFFFF;
+  /* ── Phase-3 legacy-styling-audit tokens (sweep batch 1) ──────────────── */
+  /* Modal elevation — large soft drop for full dialog overlays. */
+  --shadow-modal: 0 40px 90px -20px rgba(10, 43, 74, 0.45);
+  /* Dropdown/menu elevation — portaled header dropdowns (account menu, search). */
+  --shadow-dropdown: 0 24px 56px -18px rgba(10, 43, 74, 0.40);
+  /* Toast elevation — neutral soft shadow for the MFE toaster. */
+  --shadow-toast: 0 10px 15px -3px rgba(0, 0, 0, 0.10), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* Brand-purple focus ring (2px) — interactive-control focus state (e.g. MfeSwitch). */
+  --shadow-focus-ring: 0 0 0 2px rgba(123, 92, 250, 0.35);
+  /* LinkedIn-blue muted ink — LeadCountBadge (outside the pipa palette by design). */
+  --ink-linkedin: #516f90;
+  /* Teal "good" match-score state — tint background + ink (teal-600 family). */
+  --fill-teal-tint: rgba(20, 184, 166, 0.12);
+  --status-teal-ink: #0f766e;
+  /* Violet "included" badge — tint + border (violet-500 family, distinct from pipa-purple). */
+  --fill-violet-tint: rgba(139, 92, 246, 0.20);
+  --fill-violet-border: rgba(139, 92, 246, 0.30);
+  --ink-violet: #c4b5fd;
+
+  /* ── Legacy-sweep batch 4: surface-wide inline-literal tokenization ── */
+  /* Overlay scrims (functional backdrop dims) */
+  --overlay-scrim: rgba(0, 18, 65, 0.45);   /* navy modal scrim (ActivityModal) */
+  --overlay-light: rgba(244, 244, 244, 0.85); /* see-through light backdrop (modal/sheet) */
+  --overlay-dim:   rgba(0, 0, 0, 0.30);      /* neutral drawer dim */
+  /* Glass surfaces */
+  --surface-dropdown:   rgb(248, 249, 255);        /* account-menu / search-results / MfeSelect panel — fully opaque, slight cool tint. NOT a glass surface despite the section heading above; menus must hide what's behind them. */
+  --surface-trigger:    rgba(255, 255, 255, 0.60); /* topbar menu trigger */
+  --surface-glass-55:   rgba(255, 255, 255, 0.55); /* light glass card */
+  --surface-glass-50:   rgba(255, 255, 255, 0.50); /* skeleton shimmer fill */
+  /* Dark-tier (LinkedIn-auth) ink + fill alpha scale (white-on-dark) */
+  --dark-ink-muted:   rgba(255, 255, 255, 0.50);
+  --dark-ink-faint:   rgba(255, 255, 255, 0.45);
+  --dark-ink-dim:     rgba(255, 255, 255, 0.40);
+  --dark-fill-subtle: rgba(255, 255, 255, 0.04);
+  --dark-fill-low:    rgba(255, 255, 255, 0.06);
+  --dark-fill:        rgba(255, 255, 255, 0.08);
+  --dark-fill-strong: rgba(255, 255, 255, 0.12);
+  --dark-ink-inverse: #0a090f; /* dark text on light pills within the dark screen */
+  /* Success halo — the "You're connected" check circle: cyan-400 (rgb 46,253,223)
+     tinted fill + border, distinct from the cyan-500 activity tints. */
+  --dark-success-halo-bg:     rgba(46, 253, 223, 0.12);
+  --dark-success-halo-border: rgba(46, 253, 223, 0.35);
+  /* Cyan focus ring highlighting the pinned pipa icon in the pin-toolbar illustration. */
+  --illus-pin-ring: 0 0 0 2px var(--pipa-cyan-400);
+  /* Purple pulse halo — the "watching for the extension" waiting dot (see the
+     pipa-connect-pulse keyframe in app/globals.css). */
+  --pulse-halo: rgba(123, 92, 250, 0.45);
+  /* Additional purple / cyan / navy alphas */
+  --fill-purple-15: rgba(123, 92, 250, 0.15);
+  --fill-purple-07: rgba(123, 92, 250, 0.07);
+  --fill-cyan-soft: rgba(30, 212, 187, 0.12);
+  --fill-faintest:  rgba(0, 18, 65, 0.015);
+  --fill-faint-02:  rgba(0, 18, 65, 0.02);
+  /* Directional one-off shadows (deferred from sweep 1) */
+  --shadow-rail-up:    0 -8px 24px rgba(99, 90, 255, 0.08);
+  --shadow-drawer-left: -4px 0 20px rgba(0, 0, 0, 0.15);
+  /* Onboarding decorative gradients */
+  --gradient-onboard-success: linear-gradient(135deg, rgba(34, 197, 94, 0.10), rgba(123, 92, 250, 0.08));
+  --gradient-onboard-info:    linear-gradient(135deg, rgba(123, 92, 250, 0.10), rgba(30, 212, 187, 0.08));
+  /* Border alphas (1px/2px solid borders) */
+  --border-purple-20:   rgba(123, 92, 250, 0.20);
+  --border-purple-25:   rgba(123, 92, 250, 0.25);
+  --border-purple-30:   rgba(123, 92, 250, 0.30);
+  --border-purple-dashed: rgba(123, 92, 250, 0.45); /* create-card dashed border */
+  --border-cyan-30:     rgba(30, 212, 187, 0.30);
+  --border-positive-soft: rgba(34, 197, 94, 0.25);
+  --dark-border-soft:   rgba(255, 255, 255, 0.10);  /* dark-tier hairline border */
+}
+
+/*
+ * ============ DARK THEME (net-new, v1) ============
+ * Tier 2 remap only — component code never changes for theming. Derived from the
+ * --pipa-dark-* ramps + the aurora treatment; the glass recipe becomes dark glass
+ * (white at low alpha over the aurora field). Status inks brighten to hold
+ * contrast on dark tints. Refined visually when the style-guide catalog lands.
+ */
+[data-theme="dark"] {
+  --page-bg: var(--pipa-bg-aurora);
+
+  --surface-card: rgba(255, 255, 255, 0.055);
+  --surface-panel: rgba(255, 255, 255, 0.045);
+  --surface-card-border: rgba(255, 255, 255, 0.10);
+  --surface-white: var(--pipa-dark-800);
+  --surface-dropdown: rgb(24, 22, 38);
+  --surface-trigger: rgba(255, 255, 255, 0.06);
+  --surface-glass-55: rgba(255, 255, 255, 0.055);
+  --surface-glass-50: rgba(255, 255, 255, 0.05);
+  --surface-rail: rgba(16, 13, 28, 0.72);
+  --surface-topbar: rgba(16, 13, 28, 0.55);
+  --surface-hero: linear-gradient(145deg, var(--pipa-dark-700) 0%, var(--pipa-dark-850) 100%);
+
+  --ink-strong: #FFFFFF;
+  --ink-muted: rgba(255, 255, 255, 0.65);
+  --ink-faint: rgba(255, 255, 255, 0.45);
+  /* purple-600 measures only 3.97:1 on the dark form plane; purple-300 is 6.91:1. */
+  --ink-action: var(--pipa-purple-300);
+  --ink-on-dark: #FFFFFF;
+  --tooltip-bg: #34324a;
+
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-divider: rgba(255, 255, 255, 0.09);
+  --border-hairline: rgba(255, 255, 255, 0.07);
+  --fill-hover: rgba(255, 255, 255, 0.04);
+  --fill-subtle: rgba(255, 255, 255, 0.06);
+  --track-off: rgba(255, 255, 255, 0.24);
+  --fill-faintest: rgba(255, 255, 255, 0.02);
+  --fill-faint-02: rgba(255, 255, 255, 0.03);
+
+  --nav-active-bg: rgba(123, 92, 250, 0.22);
+  --nav-active-border: rgba(123, 92, 250, 0.35);
+  --avatar-bg: rgba(123, 92, 250, 0.25);
+  --focus-ring-subtle: rgba(123, 92, 250, 0.30);
+
+  --fill-purple-tint: rgba(123, 92, 250, 0.18);
+  --seq-step-ink: var(--pipa-purple-300);
+  --fill-purple-badge: rgba(123, 92, 250, 0.16);
+  --fill-purple-border: rgba(123, 92, 250, 0.30);
+
+  /* Dark chip = the quick-action surface treatment, which is already legible on
+     this background. Measured before the change: rgb(74,61,204) text on
+     rgba(123,92,250,0.16) over a dark page. */
+  --chip-lead-list-bg: var(--surface-card);
+  --chip-lead-list-border: var(--surface-card-border);
+  --chip-lead-list-ink: var(--ink-strong);
+  --chip-lead-list-shadow: var(--shadow-card);
+  --fill-purple-hover: rgba(123, 92, 250, 0.12);
+  --fill-purple-ghost: rgba(123, 92, 250, 0.07);
+  --fill-purple-track: rgba(123, 92, 250, 0.24);
+  --fill-purple-100: rgba(123, 92, 250, 0.20);
+  --fill-purple-15: rgba(123, 92, 250, 0.22);
+  --fill-purple-07: rgba(123, 92, 250, 0.11);
+  --fill-cyan-tint: rgba(30, 212, 187, 0.20);
+  --fill-cyan-soft: rgba(30, 212, 187, 0.16);
+  --fill-teal-tint: rgba(20, 184, 166, 0.18);
+  --status-teal-ink: #2DD4BF;
+
+  --status-positive-tint: rgba(34, 197, 94, 0.16);
+  --status-positive-ink: #4ADE80;
+  --status-warning-tint: rgba(245, 158, 11, 0.16);
+  --status-warning-ink: #FBBF24;
+  --status-negative-tint: rgba(239, 68, 68, 0.16);
+  --status-negative-ink: #F87171;
+  --status-info-tint: rgba(23, 107, 186, 0.18);
+  --status-info-ink: #93C5FD;
+
+  --surface-ai: linear-gradient(135deg, rgba(123, 92, 250, 0.16) 0%, rgba(30, 212, 187, 0.10) 100%);
+  --surface-ai-ink: var(--pipa-purple-300);
+  --ai-chip-ink: var(--pipa-purple-300);
+  --btn-ai-ink: var(--pipa-purple-300);
+  --btn-ai-tint: rgba(123, 92, 250, 0.12);
+
+  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.30), 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --shadow-panel: 0 1px 4px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-modal: 0 40px 90px -20px rgba(0, 0, 0, 0.65);
+  --shadow-dropdown: 0 24px 56px -18px rgba(0, 0, 0, 0.60);
+  --shadow-toast: 0 10px 15px -3px rgba(0, 0, 0, 0.45), 0 4px 6px -2px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 8px 24px rgba(123, 92, 250, 0.28);
+
+  --overlay-scrim: rgba(2, 2, 8, 0.60);
+  --overlay-light: rgba(10, 9, 15, 0.75);
+  --overlay-dim: rgba(0, 0, 0, 0.50);
+
+  --ink-linkedin: #8FB0CE;
+  --ink-violet: #C4B5FD;
+  --gradient-onboard-success: linear-gradient(135deg, rgba(34, 197, 94, 0.16), rgba(123, 92, 250, 0.14));
+  --gradient-onboard-info: linear-gradient(135deg, rgba(123, 92, 250, 0.16), rgba(30, 212, 187, 0.12));
+}
