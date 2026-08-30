@@ -1,0 +1,17 @@
+{
+  "name": "pipa-design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Canonical pipa design tokens: two-tier CSS custom properties (light + dark) and the Tailwind v4 @theme color bridge",
+  "license": "UNLICENSED",
+  "repository": "github:Sapien-Technologies/pipa-design-system",
+  "files": [
+    "tokens.css",
+    "theme-bridge.css"
+  ],
+  "exports": {
+    "./tokens.css": "./tokens.css",
+    "./theme-bridge.css": "./theme-bridge.css"
+  },
+  "style": "tokens.css"
+}
