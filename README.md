@@ -4,10 +4,10 @@ Canonical home of the pipa design tokens. Two files, no build step:
 
 | File | What it is |
 |---|---|
-| `tokens.css` | The two-tier token system: Tier-1 raw values and Tier-2 semantic tokens, complete light palette on `:root` plus the dark remap (`[data-theme="dark"]` and the system-preference guard). The **only** place raw color values live. |
-| `theme-bridge.css` | The Tailwind v4 `@theme inline` bridge: every Tier-2 **color** token exposed as a token-named utility (`bg-surface-card`, `text-ink-strong`, `border-border-subtle`, …) emitting `var(--…)` at use-point so utilities follow theme switching. Shadows and fonts are deliberately not bridged (their names live in Tailwind's own `--shadow-*` / `--font-*` namespaces); consume those as `var(--shadow-card)` or `shadow-(--shadow-card)`. |
+| `tokens.css` | The two-tier token system: Tier-1 raw values and Tier-2 semantic tokens: the complete light palette on `:root` plus the dark remap, which activates via `[data-theme="dark"]` on the root element — there is **no** `prefers-color-scheme` media query in this file. Consumers own theme switching: set `data-theme` from a theme controller (pipa-web's `ThemeProvider` pattern — system preference resolved in JS, no-flash init) or ship light-only. The **only** place raw color values live. |
+| `theme-bridge.css` | The Tailwind v4 `@theme inline` bridge: the commonly-consumed Tier-2 **color** tokens exposed as token-named utilities (`bg-surface-card`, `text-ink-strong`, `border-border-subtle`, …) emitting `var(--…)` at use-point so utilities follow theme switching. Not every color token is bridged (e.g. the `--overlay-*`, `--hero-*`, `--dark-*`, `--btn-dark-*` families) — consume unbridged tokens as `var(--token)` or the arbitrary form `bg-(--token)`. Shadows and fonts are deliberately not bridged (their names live in Tailwind's own `--shadow-*` / `--font-*` namespaces); consume those as `var(--shadow-card)` or `shadow-(--shadow-card)`. |
 
-Source of truth lineage: extracted verbatim from `pipa-web` (`styles/tokens.css` and the `@theme` block of `app/globals.css`) on 2026-08-30 under the pipa-atlas PRD.
+Source of truth lineage: extracted verbatim from `pipa-web` (`styles/tokens.css` and the `@theme` block of `app/globals.css`) on 2026-08-30 under the pipa-atlas PRD. In-file comments still reference pipa-web-internal paths (`styles/tokens.css`, `check:tokens`, `docs/design-system/tokens.md`) — kept deliberately, because byte-parity with the source is the extraction guarantee; this README is the package-level doc.
 
 ## Install (git dependency — no registry)
 
