@@ -5,7 +5,7 @@
 **PRD:** pipa-atlas `docs/prd/2026-08-30-pipa-atlas-operations-hub.md` (Group A, FR001–FR003)
 **Verdict:** ✅ at review — 0 BLOCKER / 1 IMPROVEMENT / 3 NIT; all 4 fixed
 **Resolution commits:** `2bb03c5`, `74d2289`
-**Merged:** — (added when the PR merges)
+**Merged:** 2026-08-30, squash merge `5698ee6` (Glen approved in-session)
 
 ## Reviewer verification highlights
 
