@@ -1,11 +1,11 @@
 # [APPROVED] PRD: Publish the existing orb tokens from pipa-design-system
 
 **Status:** Approved
-**Active phase:** —
+**Active phase:** Implemented and validated; review/merge pending
 **Last transition:** 2026-11-01 (approved by /epic atlas-v2; independent audit default adopted)
 **Ticket:** [pipa-design-system#3](https://github.com/Sapien-Technologies/pipa-design-system/issues/3)
 **Epic:** atlas-v2 phase 1
-**Depends on:** [KB bootstrap #2](2026-11-01-pipa-design-system-knowledge-base.md), merged and discoverable before implementation or feature scheduling
+**Depends on:** [KB bootstrap #2](2026-11-01-pipa-design-system-knowledge-base.md), canonical KB created and discoverable; user authorized completing tokens with the pointer docs in the same PR
 **Audit:** [open questions](audits/2026-11-01-orb-tokens-open-questions.md)
 **Predictions:** [independent research](audits/2026-11-01-orb-tokens-predictions.md)
 
@@ -30,7 +30,7 @@ Sibling-repo paths below identify inspected evidence, not files this story chang
 | `atlas-web/docs/prd/2026-10-30-atlas-web-board-voice.md`, token dependency and Orb sections | Board voice consumes these tokens through packages/design after this story lands |
 | `Skills/epics/atlas-v2.json`, pds-orb-tokens | Phase-one dependency of Board voice, held by the missing KB |
 
-The KB is currently absent, so this draft is grounded in source and current repo rules. Reconcile it with the canonical KB after #2 lands and before implementation. No dependency on mobile setup, deployment or the Board API is introduced.
+The canonical Skills/pipa-design-system-kb now exists and is discoverable on laptop and mini. This implementation was reconciled with it; Glen authorized completing the design-system work using pipa-app-official. Pointer docs and tokens ship together in PR #4. No dependency on mobile setup, deployment or the Board API is introduced.
 
 ## Token contract
 Copy values exactly from the pinned pipa-app-official source, preserving gradients, alpha values, shadow lists and referenced Tier-1 ramps. Record that source commit beside the new block and in the changelog. Do not resolve aliases into hard-coded approximations or add a new palette.
@@ -50,11 +50,11 @@ Adopted OQ001 default (corroborated): add only `--color-orb-ring-cyan: var(--orb
 
 | ID | Requirement | Status | Observable acceptance |
 |---|---|---|---|
-| FR001 | Add exactly the fourteen source aliases to tokens.css | Open | Declaration-name set and normalized values match the pinned source; no missing/extra orb names or undefined Tier-1 references |
-| FR002 | Preserve both-theme semantics | Open | Light and dark resolution match source for every alias; only orb-core has the source's dark override; switching back restores root value |
-| FR003 | Preserve CSS property types and the bridge decision | Open | OQ001 is folded; only selected plain-color aliases get `--color-*` entries, each references its token; no gradient/shadow masquerades as a color |
-| FR004 | Keep the existing package contract and non-orb values | Open | Existing declarations remain semantically identical, files/exports/import order remain valid, and package archive contains both CSS files |
-| FR005 | Publish consumption and provenance documentation | Open | KB and changelog name the source commit and resolved bridge policy; consumers are told to pin the new merged commit; no consumer is actually upgraded here |
+| FR001 | Add exactly the fourteen source aliases to tokens.css | Implemented | Declaration-name set and normalized values match the pinned source; no missing/extra orb names or undefined Tier-1 references |
+| FR002 | Preserve both-theme semantics | Implemented | Light and dark resolution match source for every alias; only orb-core has the source's dark override; switching back restores root value |
+| FR003 | Preserve CSS property types and the bridge decision | Implemented | OQ001 is folded; only selected plain-color aliases get `--color-*` entries, each references its token; no gradient/shadow masquerades as a color |
+| FR004 | Keep the existing package contract and non-orb values | Implemented | Existing declarations remain semantically identical, files/exports/import order remain valid, and package archive contains both CSS files |
+| FR005 | Publish consumption and provenance documentation | Implemented | KB and changelog name the source commit and resolved bridge policy; consumers are told to pin the new merged commit; no consumer is actually upgraded here |
 
 ## Validation and edge cases
 - Compare the new orb declaration set and values to `git show 83dfc1bdd4a6169513ec5166c99bef28de9c64a5:src/Styles/tokens.css` in pipa-app-official, not a mutable working-tree file. If that object cannot be resolved, stop validation rather than silently pick a new source.
@@ -64,7 +64,11 @@ Adopted OQ001 default (corroborated): add only `--color-orb-ring-cyan: var(--orb
 - Font rules, semantic contrast decisions and motion behavior remain the consuming component's work. This token promotion does not assert that every possible contrast pairing is accessible or that token existence proves full Orb visual parity.
 
 ## Delivery and rollback
-After #2 is merged and discoverable, implement this small change in one PR, record the audit decision and perform the checks above. No deployment or package-registry publication occurs. Consumers pinned to older commits remain unchanged; Board voice updates its own dependency when ready. Revert this additive commit before adoption, or pin affected consumers back through their own reviewed changes after adoption.
+The canonical KB is created and validated. Per Glen's instruction to complete the design-system work, the token implementation joins the KB pointers in PR #4; both issues remain open until that PR merges. No deployment or package-registry publication occurs. Consumers pinned to older commits remain unchanged; Board voice updates its own dependency when ready. Revert this additive commit before adoption, or pin affected consumers back through their own reviewed changes after adoption.
 
 ## Assumptions and completion
 Independent research folded OQ001: only the existing source consumer's orb-ring-cyan receives a named color bridge utility; all fourteen tokens remain available. No exact consumer delivery date or downstream adoption is assumed. The story is complete when the reviewed tokens and documentation are merged and the commit is available to consumers; it does not implement Board voice, mobile, or the shared component library.
+
+## Validation evidence
+
+Exact declaration comparison against the pinned source passed: fourteen unique orb aliases plus one dark override; existing CSS is an unchanged prefix and package.json is unchanged. A temporary Chromium fixture compared all fourteen computed image/shadow/color values in light, dark and light again (42 comparisons), all equal to the pinned desktop source. npm pack --dry-run includes both CSS exports. KB lint and diff whitespace checks pass. No npm test/build scripts exist.

@@ -85,3 +85,8 @@
   --color-surface-trigger: var(--surface-trigger);
   --color-surface-white: var(--surface-white);
 }
+
+/* Match the desktop consumer: gradients and shadows are not color utilities. */
+@theme inline {
+  --color-orb-ring-cyan: var(--orb-ring-cyan);
+}
