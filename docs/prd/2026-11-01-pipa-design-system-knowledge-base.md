@@ -1,7 +1,7 @@
 # [APPROVED] PRD: Bootstrap the canonical pipa-design-system knowledge base
 
 **Status:** Approved
-**Active phase:** KB created; repository pointers and remote discovery validation
+**Active phase:** KB validated on laptop and mini; repository pointer PR awaiting merge
 **Last transition:** 2026-11-01 (approved by /epic atlas-v2; independent audit default adopted)
 **Ticket:** [pipa-design-system#2](https://github.com/Sapien-Technologies/pipa-design-system/issues/2)
 **Audit:** [open questions](audits/2026-11-01-pipa-design-system-knowledge-base-open-questions.md)
@@ -18,10 +18,10 @@ Glen's global instruction makes Skills the source of truth; follow the existing 
 ## Acceptance
 | ID | Check | Status |
 |---|---|---|
-| FR001 | Canonical KB in Skills has routed references and decision index; current code and planned orb work are explicitly distinguished | Open |
-| FR002 | Repo pointers resolve to the canonical KB, hard rules remain intact, and no source CSS/package behavior changes | Open |
-| FR003 | Run `bash ~/development/Skills/skill-sync/scripts/sync.sh push pipa-design-system-kb` and `status`; expected laptop and mini runtime discovery is verified without committing absolute-path links | Open |
-| FR004 | KB lint passes with the explicit canonical `--kb` path; explain cross-repo path checks; set the epic KB path to `../Skills/pipa-design-system-kb` relative to its checkout after the KB exists; chain preflight records the resolved canonical `kb_path`, never a fabricated local copy | Open |
+| FR001 | Canonical KB in Skills has routed references and decision index; current code and planned orb work are explicitly distinguished | Implemented; awaiting PR merge |
+| FR002 | Repo pointers resolve to the canonical KB, hard rules remain intact, and no source CSS/package behavior changes | Implemented; awaiting PR merge |
+| FR003 | Run `bash ~/development/Skills/skill-sync/scripts/sync.sh push pipa-design-system-kb` and `status`; expected laptop and mini runtime discovery is verified without committing absolute-path links | Implemented; awaiting PR merge |
+| FR004 | KB lint passes with the explicit canonical `--kb` path; explain cross-repo path checks; set the epic KB path to `../Skills/pipa-design-system-kb` relative to its checkout after the KB exists; chain preflight records the resolved canonical `kb_path`, never a fabricated local copy | Validated; resolved path documented for preflight |
 | FR005 | Commit and push Skills changes; land both Skills and repo documentation PRs before closing #2 or releasing #3; no merge is inferred from this PRD | Open |
 
 ## Test
@@ -32,4 +32,4 @@ Documentation and skill registration only. No orb implementation, component libr
 
 ## Bootstrap implementation evidence
 
-Canonical KB created in [Skills commit fe1671d](https://github.com/Sapien-Technologies/Skills/commit/fe1671d). Local KB lint reports zero errors/checks and skill-sync reports parity. README, PROJECT and agent instructions now point to the canonical router in this docs PR. Runtime source is unchanged. Issue #2 remains open until the pointer PR merges and mini discovery is verified.
+Canonical KB created in [Skills commit fe1671d](https://github.com/Sapien-Technologies/Skills/commit/fe1671d). Local KB lint reports zero errors/checks and skill-sync reports parity. README, PROJECT and agent instructions now point to the canonical router in this docs PR. Runtime source is unchanged. Both machines resolve the canonical router and have skill-sync parity. KB lint against the mini cold checkout of this docs branch also reports zero errors/checks. Epic metadata now names the sibling canonical Skills directory. Issue #2 remains open only for the repository pointer PR merge; future feature-chain preflight must record the resolved router before proceeding.
