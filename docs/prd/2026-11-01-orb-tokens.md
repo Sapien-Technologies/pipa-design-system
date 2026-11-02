@@ -1,6 +1,7 @@
 # [APPROVED] PRD: Publish the existing orb tokens from pipa-design-system
 
 **Status:** Approved
+**Review record:** [PR #4 review](../reviews/2026-11-01-pr4-orb-tokens.md)
 **Active phase:** Implemented and validated; review/merge pending
 **Last transition:** 2026-11-01 (approved by /epic atlas-v2; independent audit default adopted)
 **Ticket:** [pipa-design-system#3](https://github.com/Sapien-Technologies/pipa-design-system/issues/3)
