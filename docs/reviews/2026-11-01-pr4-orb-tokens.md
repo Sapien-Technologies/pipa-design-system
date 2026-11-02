@@ -4,7 +4,7 @@
 **Reviewed:** 2026-11-01
 **PRD:** docs/prd/2026-11-01-orb-tokens.md
 **Verdict:** ✅ — 0 blockers, 0 improvements, 1 nit (fixed)
-**Resolution commits:** this documentation commit (git history records its SHA)
+**Resolution commits:** d23a4af
 **Merged:** — (awaiting Glen's approval)
 
 ## Findings and resolutions
