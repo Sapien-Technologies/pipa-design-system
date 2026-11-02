@@ -1,26 +1,11 @@
-# pipa-design-system — Project Documentation
+# pipa-design-system
 
-**Version:** 0.1.0
-**Framework:** none (plain CSS package, git-dep installable)
-**Architecture:** two files — token definitions + Tailwind v4 bridge
+A plain CSS package exporting pipa tokens and a Tailwind v4 color bridge.
 
-## Quick Start
+Read the canonical [pipa-design-system knowledge base](https://github.com/Sapien-Technologies/Skills/blob/main/pipa-design-system-kb/SKILL.md) for architecture, configuration, operations and decisions. The entire KB lives in Skills; this repo contains pointers only.
 
-```bash
-npm install github:Sapien-Technologies/pipa-design-system
-```
+## Quick start
 
-Wiring and rules: see the repo `README.md` (the authoritative doc).
+Install a pinned GitHub ref and import tokens before the Tailwind bridge; see [README](../README.md).
 
-## Project Structure
-
-- `tokens.css` — two-tier tokens, light + dark
-- `theme-bridge.css` — Tailwind v4 `@theme inline` color bridge
-- `docs/changelog/` — per-day change entries
-
-## Documentation Index
-
-| Component | Documentation | Status |
-|---|---|---|
-| Tokens + bridge (consumption contract) | [README.md](../README.md) | ✅ Documented |
-| Agent reference | [AGENTS.md](../AGENTS.md) / [CLAUDE.md](../CLAUDE.md) | ✅ Documented |
+[PRDs](prd/INDEX.md) · [Changelog](changelog/) · [Agent rules](../AGENTS.md)

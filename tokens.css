@@ -432,3 +432,25 @@
   --gradient-onboard-success: linear-gradient(135deg, rgba(34, 197, 94, 0.16), rgba(123, 92, 250, 0.14));
   --gradient-onboard-info: linear-gradient(135deg, rgba(123, 92, 250, 0.16), rgba(30, 212, 187, 0.12));
 }
+
+/* Orb aliases copied from pipa-app-official/src/Styles/tokens.css
+ * Source commit: 83dfc1bdd4a6169513ec5166c99bef28de9c64a5. Keep values and theme inheritance aligned. */
+:root {
+  --orb-body: radial-gradient(circle at 35% 35%, var(--pipa-purple-500) 0%, var(--pipa-cyan-400) 100%);
+  --orb-body-listening: radial-gradient(circle at 40% 35%, rgba(46, 253, 223, 0.85), rgba(0, 200, 180, 0.40));
+  --orb-body-thinking: conic-gradient(from 0deg, rgba(245, 158, 11, 0.7), rgba(123, 92, 250, 0.7), rgba(245, 158, 11, 0.7));
+  --orb-glow-idle: 0 0 20px rgba(123, 92, 250, 0.5);
+  --orb-glow-listening-min: 0 0 18px rgba(46, 253, 223, 0.5), 0 0 40px rgba(46, 253, 223, 0.15);
+  --orb-glow-listening-max: 0 0 32px rgba(46, 253, 223, 0.7), 0 0 70px rgba(46, 253, 223, 0.25);
+  --orb-glow-speaking: 0 0 24px rgba(123, 92, 250, 0.5), 0 0 50px rgba(46, 253, 223, 0.20);
+  --orb-glow-thinking: 0 0 24px rgba(245, 158, 11, 0.40);
+  --orb-ring-cyan: rgba(46, 253, 223, 0.30);
+  --orb-ring-cyan-soft: rgba(46, 253, 223, 0.20);
+  --orb-wave-purple: rgba(123, 92, 250, 0.20);
+  --orb-wave-cyan: rgba(46, 253, 223, 0.25);
+  --orb-dot-amber: rgba(245, 158, 11, 0.80);
+  --orb-core: #EFEFEF;
+}
+[data-theme="dark"] {
+  --orb-core: #12101C;
+}
