@@ -1,6 +1,6 @@
 # AGENTS.md — pipa-design-system
 
-`README.md` is the single source of truth for this repo (consumption contract, change process, the pipa-web non-adoption guard). Read it before any change.
+Read the canonical [knowledge base](https://github.com/Sapien-Technologies/Skills/blob/main/pipa-design-system-kb/SKILL.md) before changes. [README.md](README.md) is the short installation guide; the KB owns the detailed contract.
 
 Hard rules:
 - `tokens.css` is the only home of raw color values. Every new token must be considered for the dark remap — an unremapped token deliberately renders identically in both themes (the production semantics).

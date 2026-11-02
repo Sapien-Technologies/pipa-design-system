@@ -1,7 +1,7 @@
 # [APPROVED] PRD: Bootstrap the canonical pipa-design-system knowledge base
 
 **Status:** Approved
-**Active phase:** —
+**Active phase:** KB created; repository pointers and remote discovery validation
 **Last transition:** 2026-11-01 (approved by /epic atlas-v2; independent audit default adopted)
 **Ticket:** [pipa-design-system#2](https://github.com/Sapien-Technologies/pipa-design-system/issues/2)
 **Audit:** [open questions](audits/2026-11-01-pipa-design-system-knowledge-base-open-questions.md)
@@ -29,3 +29,7 @@ Run the canonical KB linter against this repo with `--kb ../Skills/pipa-design-s
 
 ## Scope and rollback
 Documentation and skill registration only. No orb implementation, component library, dependency change, consumer migration, mobile or deployment work. Revert the documentation commits together and retain #2 as open if discovery fails; never remove unrelated runtime links or replace another skill.
+
+## Bootstrap implementation evidence
+
+Canonical KB created in [Skills commit fe1671d](https://github.com/Sapien-Technologies/Skills/commit/fe1671d). Local KB lint reports zero errors/checks and skill-sync reports parity. README, PROJECT and agent instructions now point to the canonical router in this docs PR. Runtime source is unchanged. Issue #2 remains open until the pointer PR merges and mini discovery is verified.
